@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build a Youtube Video Search in Javascript Using Youtube Data API </title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+  <main>
+    <h1>Build a Youtube video Search App</h1>
+    <section class="component-search__container">
+      <form autocomplete="off" class="component-search__form" id="form">
+        <input class="component-search__input" id="myInput" placeholder="Search a movie..." required type="text"/>
+        <div class="component-search__counter"></div>
+      </form>
+      <div class="component-search__wrap">
+        <img class="component-search__loader" src="./hourglass.gif" />
+      </div>
+      
+
+      <ul class="component-search__results-list"></ul>
+    </section>
+  </main>
+  
+  <script src="./index.js"></script>
+</body>
+</html>
