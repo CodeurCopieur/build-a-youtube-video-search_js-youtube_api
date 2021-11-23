@@ -5,7 +5,7 @@ const resultsEl = document.querySelector('.component-search__results-list');
 const counterEl = document.querySelector('.component-search__counter');
 
 let field,
-    API_KEY = "****",
+    API_KEY = "*****",
     API_URL = "https://www.googleapis.com/youtube/v3/",
     maxResults=10,
     totalResults,
@@ -13,22 +13,37 @@ let field,
 
 const renderResults = videos => {
   resultsEl.innerHTML = (
-    videos.map( video => (
+    videos.map( item => (
       `
         <li class="component-search__wrap-video">
-          <div>
+          <a 
+            href="http://www.youtube.com/watch?v=${item.id.videoId}"
+            target="_blank">
+            <div class="component-search__wrap-picture">
+              <img src="${item.snippet.thumbnails.high.url}" alt="">
+            </div>
+          </a>
+          <div class="component-search__wrap-texts">
+            <h3 class="component-search__wrap-title">${item.snippet.title}</h3>
+            <a 
+              href="https://www.youtube.com/channel/${item.snippet.channelId}"
+              target="_blank">
+              <span class="component-search__wrap-title">${item.snippet.channelTitle}</span>
+            </a>
+            <p>${item.snippet.description}</p>
           </div>
         </li>
       `
     )).join('')
   )
-}
+};
 
 const render = res => {
+  loaderEl.classList.remove('is-active');
   counterEl.innerHTML = `${totalResults} resultats`;
 
-  res ? renderResults( res ) : null
-}
+  res ? renderResults( res ) : null;
+};
 
 const fetchSearch = async(val) => {
   url = `${API_URL}search?key=${API_KEY}&part=snippet&q=${val}&maxResults=${maxResults}&type=video`
@@ -43,7 +58,7 @@ const fetchSearch = async(val) => {
       videos = items.map( elt => elt);
       videos ? render(videos) : null;
 
-      console.log(videos);
+      console.log(data);
       //resultsPerPage, totalResults
     }
   })
