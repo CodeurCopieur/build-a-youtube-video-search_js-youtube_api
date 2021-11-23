@@ -5,7 +5,7 @@ const resultsEl = document.querySelector('.component-search__results-list');
 const counterEl = document.querySelector('.component-search__counter');
 
 let field,
-    API_KEY = "AIzaSyAwapiF1EVbl6wfwX2tYhBN8Y0WhHm--Qc",
+    API_KEY = "****",
     API_URL = "https://www.googleapis.com/youtube/v3/",
     maxResults=10,
     totalResults,
