@@ -15,6 +15,38 @@
       <form autocomplete="off" class="component-search__form" id="form">
         <input class="component-search__input" id="myInput" placeholder="Search a movie..." required type="text"/>
         <div class="component-search__counter"></div>
+
+        <div class="component__group">
+          <label for="duration">Select Duration:</label>
+          <select class="component__control" id="duration">
+            <option>any</option>
+            <option>short</option>
+            <option>medium</option>
+            <option>long</option>
+          </select>
+        </div>
+
+        <div class="component__group">
+          <label for="order">Order:</label>
+          <select class="component__control" id="order">
+            <option>relevance</option>
+            <option>viewCount</option>
+            <option>videoCount</option>
+            <option>title</option>
+            <option>rating</option>
+            <option>date</option>
+          </select>
+        </div>
+
+        <div class="component__group">
+          <label for="fromdate">Before:</label>
+          <input type="date" class="component__control" name="" id="beforedate">
+        </div>
+        <div class="component__group">
+          <label for="fromdate">After:</label>
+          <input type="date" class="component__control" name="" id="afterdate">
+        </div>
+
       </form>
       <div class="component-search__wrap">
         <img class="component-search__loader" src="./hourglass.gif" />
