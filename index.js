@@ -4,12 +4,25 @@ const myInput = document.querySelector('#myInput');
 const resultsEl = document.querySelector('.component-search__results-list');
 const counterEl = document.querySelector('.component-search__counter');
 
+const select = (s) => document.querySelector(s);
+
 let field,
-    API_KEY = "*****",
+    API_KEY = "******",
     API_URL = "https://www.googleapis.com/youtube/v3/",
-    maxResults=10,
+    maxResults=20,
     totalResults,
-    videos
+    videos,
+    duration = 'any',
+    order = 'revelance'
+
+select('#duration').addEventListener('change', e => {
+  duration = e.target.value;
+});
+
+select('#order').addEventListener('change', e => {
+  order = e.target.value;
+})
+
 
 const renderResults = videos => {
   resultsEl.innerHTML = (
@@ -46,7 +59,8 @@ const render = res => {
 };
 
 const fetchSearch = async(val) => {
-  url = `${API_URL}search?key=${API_KEY}&part=snippet&q=${val}&maxResults=${maxResults}&type=video`
+  url = `${API_URL}search?key=${API_KEY}&part=snippet&q=${val.split(" ").join("")}${duration != 'any' ? `&videoDuration=${duration}` : '' }${ order != 'revelance' ? `&order=${order}` : ''}&type=video&maxResults=${maxResults}`
+
   
   await fetch(url)
   .then( data => data.json())
@@ -58,7 +72,7 @@ const fetchSearch = async(val) => {
       videos = items.map( elt => elt);
       videos ? render(videos) : null;
 
-      console.log(data);
+      console.log(data, url);
       //resultsPerPage, totalResults
     }
   })
